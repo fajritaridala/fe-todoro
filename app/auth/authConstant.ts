@@ -17,8 +17,8 @@ const REGISTER_CONSTANT = [
   {
     type: 'text',
     name: 'username',
-    label: 'Username',
-    placeholder: 'Enter your username',
+    label: 'Full name',
+    placeholder: 'e.g. John Doe',
   },
   {
     type: 'email',
@@ -30,7 +30,7 @@ const REGISTER_CONSTANT = [
     type: 'password',
     name: 'password',
     label: 'Password',
-    placeholder: 'Enter your password',
+    placeholder: 'Create a password',
   },
   {
     type: 'password',

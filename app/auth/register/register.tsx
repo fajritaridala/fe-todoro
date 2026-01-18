@@ -4,14 +4,15 @@ import Auth from '@/components/ui/auth'
 import useRegister from './useRegister'
 
 const Register = () => {
-  const { controlRegister } = useRegister()
+  const { form, onRegisterSubmit } = useRegister()
   return (
     <Auth
-      title="Organize tasks, track time."
-      description="One platform to manage your todo-lists and Pomodoro sessions"
+      title="Create an account"
+      description="Start your journey to better productivity today."
       page="register"
       textButton="Create account"
-      control={controlRegister}
+      form={form}
+      onSubmit={onRegisterSubmit}
     />
   )
 }

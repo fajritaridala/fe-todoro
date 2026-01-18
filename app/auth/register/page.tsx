@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Register from './register'
 
 export const metadata: Metadata = {
-  title: 'Register',
+  title: 'Sign Up',
   description: 'Register page',
 }
 

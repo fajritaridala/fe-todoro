@@ -1,5 +1,4 @@
 import authConstants from '@/app/auth/authConstant'
-import useAuth from '@/app/auth/useAuth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import {
@@ -10,6 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import Oauth from '@/lib/supabase/oauth'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form'
@@ -27,14 +27,12 @@ type PropTypes<T extends FieldValues> = {
 
 const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
   const { page, textButton, description, title, form, onSubmit } = props
-
-  const { handleSignInGoogle } = useAuth()
   const formField = authConstants(page)
 
   return (
     <div className="bg-white flex justify-center-safe">
       <Card className=" rounded-none border-none  self-center-safe w-xl   flex  justify-center-safe  px-4  lg:shadow-none shadow-lg">
-        <CardHeader className="space-y-3 mb-4 w-full">
+        <CardHeader className="space-y-2 mb-4 w-full">
           <h1 className="text-foreground text-4xl font-bold tracking-tight">
             {title}
           </h1>
@@ -86,7 +84,7 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
             <Button
               variant="outline"
               className="text-foreground w-full gap-3 text-lg h-12 bg-white hover:bg-muted-foreground/10"
-              onClick={handleSignInGoogle}
+              onClick={Oauth.signIn.google}
             >
               <Image
                 src="/google-logo.webp"
