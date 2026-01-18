@@ -1,5 +1,7 @@
+import SplitText from '@/components/SplitText'
 import Image from 'next/image'
 import { ReactNode } from 'react'
+import { TEXT_CONTENT } from './authConstant'
 
 export default function AuthLayout({
   children,
@@ -30,8 +32,16 @@ export default function AuthLayout({
           </div>
 
           <div className=" row-start-2 row-span-3  my-auto">
-            <h2 className="tracking-tight leading-24 text-white mb-4 capitalize font-extrabold w-20 text-8xl">
-              focus. flow. <span className="text-warning">finish.</span>
+            <h2 className="tracking-tight leading-24 text-white mb-4 font-extrabold w-20 text-8xl">
+              {TEXT_CONTENT.map((item, index) => (
+                <SplitText
+                  key={index}
+                  text={item.text}
+                  delay={item.delay}
+                  className={item.color}
+                  ease="elastic.out"
+                />
+              ))}
             </h2>
             <p className="text-muted-foreground leading-relaxed w-sm text-lg font-medium ">
               Your simple companion for daily productivity. Organize tasks and

@@ -40,6 +40,24 @@ const REGISTER_CONSTANT = [
   },
 ]
 
+const TEXT_CONTENT = [
+  {
+    text: 'Focus.',
+    delay: 100,
+    color: 'text-white',
+  },
+  {
+    text: 'Flow.',
+    delay: 200,
+    color: 'text-white',
+  },
+  {
+    text: 'Finish.',
+    delay: 250,
+    color: 'text-danger',
+  },
+]
+
 const authConstants = (page: string) => {
   switch (page) {
     case 'login':
@@ -51,4 +69,4 @@ const authConstants = (page: string) => {
   }
 }
 
-export default authConstants
+export { authConstants, TEXT_CONTENT, LOGIN_CONSTANT, REGISTER_CONSTANT }
