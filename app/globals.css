@@ -32,6 +32,14 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -46,19 +54,29 @@
 }
 
 :root {
+  --background: oklch(95.85% 0.005 274.96);
+  --foreground: oklch(16.31% 0.016 261.49);
+  --primary: oklch(93.35% 0.081 88.74);
+  --primary-foreground: oklch(16.31% 0.016 261.49);
+  --secondary: oklch(87.08% 0.052 24.13);
+  --secondary-foreground: oklch(95.85% 0.005 274.96);
+  --info: oklch(81.87% 0.078 236.69);
+  --info-foreground: oklch(95.85% 0.005 274.96);
+  --danger: oklch(78.19% 0.107 21.19);
+  --danger-foreground: oklch(95.85% 0.005 274.96);
+  --warning: oklch(85.21% 0.091 51.44);
+  --warning-foreground: oklch(16.31% 0.016 261.49);
+  --success: oklch(86.23% 0.071 127.14);
+  --success-foreground: oklch(95.85% 0.005 274.96);
+  --muted-foreground: oklch(54.44% 0.035 265.11);
+  --muted: oklch(26.86% 0.022 265.78);
+
+  /* shadcd default */
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);

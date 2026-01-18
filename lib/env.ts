@@ -1,0 +1,10 @@
+const NODE_ENV: string = process.env.NODE_ENV || '';
+const SUPABASE_URL: string = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const SUPABASE_KEY: string = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || '';
+const SUPABASE_GOOGLE_SECRET: string = process.env.SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET || ''
+
+
+export {
+  NODE_ENV, SUPABASE_GOOGLE_SECRET, SUPABASE_KEY, SUPABASE_URL
+};
+
