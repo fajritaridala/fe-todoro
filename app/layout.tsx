@@ -1,0 +1,29 @@
+import '@/src/styles/globals.css'
+import type { Metadata } from 'next'
+import { Bricolage_Grotesque } from 'next/font/google'
+import { ReactNode } from 'react'
+
+const bricolage = Bricolage_Grotesque({
+  variable: '--font-bricolage-sans',
+  subsets: ['latin'],
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Todoro',
+    template: 'Todoro | %s',
+  },
+  description: 'TODORO home page',
+}
+
+export type SharedLayout = {
+  readonly children: ReactNode
+}
+
+export default function RootLayout({ children }: SharedLayout) {
+  return (
+    <html lang="en">
+      <body className={`${bricolage.variable} antialiased`}>{children}</body>
+    </html>
+  )
+}

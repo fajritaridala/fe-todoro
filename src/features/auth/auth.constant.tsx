@@ -1,6 +1,6 @@
-import LockIcon from '@/src/icons/lock-icon'
-import MailFilledIcon from '@/src/icons/mail-filled-icon'
-import UserIcon from '@/src/icons/user-icon'
+import LockIcon from '@/src/components/icons/lock-icon'
+import MailFilledIcon from '@/src/components/icons/mail-filled-icon'
+import UserIcon from '@/src/components/icons/user-icon'
 
 const LOGIN_CONSTANT = [
   {

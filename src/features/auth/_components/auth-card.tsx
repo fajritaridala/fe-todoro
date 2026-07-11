@@ -1,6 +1,6 @@
-import EyeIcon from '@/components/ui/eye-icon'
-import EyeOffIcon from '@/components/ui/eye-off-icon'
-import { authConstants } from '@/src/app/(auth)/authConstant'
+'use client'
+
+import AnimatedContent from '@/src/components/AnimatedContent'
 import { Button } from '@/src/components/ui/button'
 import {
   Card,
@@ -8,6 +8,9 @@ import {
   CardFooter,
   CardHeader,
 } from '@/src/components/ui/card'
+import EyeIcon from '@/src/components/ui/eye-icon'
+import EyeOffIcon from '@/src/components/ui/eye-off-icon'
+import { FieldSeparator } from '@/src/components/ui/field'
 import {
   Form,
   FormControl,
@@ -16,14 +19,17 @@ import {
   FormLabel,
   FormMessage,
 } from '@/src/components/ui/form'
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from '@/src/components/ui/input-group'
 import Oauth from '@/src/lib/supabase/oauth'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form'
-import AnimatedContent from '../../AnimatedContent'
-import { FieldSeparator } from '../field'
-import { InputGroup, InputGroupAddon, InputGroupInput } from '../input-group'
+import { authConstants } from '../auth.constant'
 
 type PropTypes<T extends FieldValues> = {
   title: string
@@ -34,7 +40,7 @@ type PropTypes<T extends FieldValues> = {
   onSubmit: SubmitHandler<T>
 }
 
-const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
+const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
   const [showPassword, setShowPassword] = useState<Record<string, boolean>>({})
   const toggleShowPassword = (itemName: string) => {
     setShowPassword((prev) => ({
@@ -47,18 +53,18 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
   const formField = authConstants(page)
 
   return (
-    <div className="bg-white h-screen flex justify-center-safe overflow-hidden">
+    <div className="flex h-screen justify-center-safe overflow-hidden bg-white">
       <AnimatedContent className="flex" direction="horizontal" duration={1}>
-        <Card className="rounded-none border-none shadow-none self-center-safe lg:w-xl flex justify-center-safe lg:px-4 w-screen">
-          <CardHeader className="lg:space-y-2 w-full">
-            <h1 className="text-foreground lg:text-2xl text-xl font-bold tracking-tight">
+        <Card className="flex w-screen justify-center-safe self-center-safe rounded-none border-none shadow-none lg:w-xl lg:px-4">
+          <CardHeader className="w-full lg:space-y-2">
+            <h1 className="text-foreground text-xl font-bold tracking-tight lg:text-2xl">
               {title}
             </h1>
-            <p className="text-muted-foreground lg:text-base text-sm tracking-tight">
+            <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
               {description}
             </p>
           </CardHeader>
-          <CardContent className="lg:w-full mb-4">
+          <CardContent className="mb-4 lg:w-full">
             <Form {...form}>
               <form
                 id="auth-form"
@@ -72,7 +78,7 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                     name={item.name as any}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm text-muted">
+                        <FormLabel className="text-muted text-sm">
                           {item.label}
                         </FormLabel>
                         <FormControl>
@@ -87,7 +93,7 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                                   }
                                   placeholder={item.placeholder}
                                   {...field}
-                                  className="lg:h-11 placeholder:text-sm"
+                                  className="placeholder:text-sm lg:h-11"
                                 />
                                 <InputGroupAddon>{item.icon}</InputGroupAddon>
                                 <Button
@@ -109,7 +115,7 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                                     type={item.type}
                                     placeholder={item.placeholder}
                                     {...field}
-                                    className="lg:h-11 placeholder:text-sm"
+                                    className="placeholder:text-sm lg:h-11"
                                   />
                                   <InputGroupAddon>{item.icon}</InputGroupAddon>
                                 </>
@@ -125,19 +131,19 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
               </form>
             </Form>
           </CardContent>
-          <CardFooter className="flex flex-col  w-full space-y-4">
+          <CardFooter className="flex w-full flex-col space-y-4">
             <div className="w-full">
               <Button
                 form="auth-form"
                 type="submit"
-                className="w-full bg-foreground text-white hover:bg-foreground/90 font-semibold lg:h-12 lg:text-base"
+                className="bg-foreground hover:bg-foreground/90 w-full font-semibold text-white lg:h-12 lg:text-base"
               >
                 {textButton}
               </Button>
               <FieldSeparator className="my-6">Or</FieldSeparator>
               <Button
                 variant="outline"
-                className="text-foreground w-full gap-3 lg:text-base lg:h-12 bg-white hover:bg-muted-foreground/10"
+                className="text-foreground hover:bg-muted-foreground/10 w-full gap-3 bg-white lg:h-12 lg:text-base"
                 onClick={Oauth.signIn.google}
               >
                 <Image
@@ -145,13 +151,13 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                   alt="Google"
                   width={480}
                   height={480}
-                  className="lg:h-5 lg:w-5 h-4 w-4"
+                  className="h-4 w-4 lg:h-5 lg:w-5"
                 />
                 Continue with Google
               </Button>
             </div>
             {page === 'login' ? (
-              <p className="text-muted-foreground tracking-tight text-sm lg:text-base">
+              <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
                 Don`t have an account?{' '}
                 <Link
                   href="/register"
@@ -161,7 +167,7 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                 </Link>
               </p>
             ) : (
-              <p className=" text-muted-foreground tracking-tight text-sm lg:text-base">
+              <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
                 Have an account?{' '}
                 <Link
                   href="/login"
@@ -178,4 +184,4 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
   )
 }
 
-export default Auth
+export default AuthCard

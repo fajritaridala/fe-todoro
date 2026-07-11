@@ -1,12 +1,13 @@
 'use client'
 
-import Auth from '@/src/components/ui/custom/auth'
+import AuthCard from '../_components/auth-card'
 import useRegister from './useRegister'
 
-const Register = () => {
+export default function RegisterContainer() {
   const { form, onRegisterSubmit } = useRegister()
+
   return (
-    <Auth
+    <AuthCard
       title="Create an account"
       description="Start your journey to better productivity today."
       page="register"
@@ -16,5 +17,3 @@ const Register = () => {
     />
   )
 }
-
-export default Register

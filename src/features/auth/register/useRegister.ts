@@ -1,9 +1,8 @@
+'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import {
-  RegisterRequestDto,
-  registerRequestSchema,
-} from './dtos/registerRequest'
+import { RegisterRequestDto, registerRequestSchema } from '../dto'
 
 const useRegister = () => {
   const form = useForm({

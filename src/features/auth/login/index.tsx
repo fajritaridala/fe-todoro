@@ -1,12 +1,12 @@
 'use client'
 
-import Auth from '@/src/components/ui/custom/auth'
+import AuthCard from '../_components/auth-card'
 import useLogin from './useLogin'
 
-const Login = () => {
+export default function LoginContainer() {
   const { onLoginSubmit, form } = useLogin()
   return (
-    <Auth
+    <AuthCard
       title="Welcome Back"
       description="Please enter your details to sign in"
       page="login"
@@ -16,5 +16,3 @@ const Login = () => {
     />
   )
 }
-
-export default Login

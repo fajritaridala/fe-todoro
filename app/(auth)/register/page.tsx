@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import Register from './register'
+import RegisterContainer from '@/src/features/auth/register'
 
 export const metadata: Metadata = {
   title: 'Sign Up',
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 }
 
 const RegisterPage = () => {
-  return <Register />
+  return <RegisterContainer />
 }
 
 export default RegisterPage

@@ -1,6 +1,8 @@
+'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { LoginRequestDto, loginRequestSchema } from './dtos/loginRequest'
+import { LoginRequestDto, loginRequestSchema } from '../dto'
 
 const useLogin = () => {
   const form = useForm<LoginRequestDto>({
