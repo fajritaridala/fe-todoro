@@ -1,3 +1,5 @@
+import EyeIcon from '@/components/ui/eye-icon'
+import EyeOffIcon from '@/components/ui/eye-off-icon'
 import { authConstants } from '@/src/app/(auth)/authConstant'
 import { Button } from '@/src/components/ui/button'
 import {
@@ -17,6 +19,7 @@ import {
 import Oauth from '@/src/lib/supabase/oauth'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form'
 import AnimatedContent from '../../AnimatedContent'
 import { FieldSeparator } from '../field'
@@ -32,18 +35,26 @@ type PropTypes<T extends FieldValues> = {
 }
 
 const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
+  const [showPassword, setShowPassword] = useState<Record<string, boolean>>({})
+  const toggleShowPassword = (itemName: string) => {
+    setShowPassword((prev) => ({
+      ...prev,
+      [itemName]: !prev[itemName],
+    }))
+  }
+
   const { page, textButton, description, title, form, onSubmit } = props
   const formField = authConstants(page)
 
   return (
     <div className="bg-white h-screen flex justify-center-safe overflow-hidden">
       <AnimatedContent className="flex" direction="horizontal" duration={1}>
-        <Card className="rounded-none border-none shadow-none self-center-safe lg:w-2xl flex justify-center-safe lg:px-4 w-screen">
+        <Card className="rounded-none border-none shadow-none self-center-safe lg:w-xl flex justify-center-safe lg:px-4 w-screen">
           <CardHeader className="lg:space-y-2 w-full">
-            <h1 className="text-foreground lg:text-4xl text-xl font-bold tracking-tight">
+            <h1 className="text-foreground lg:text-2xl text-xl font-bold tracking-tight">
               {title}
             </h1>
-            <p className="text-muted-foreground lg:text-lg text-sm tracking-tight">
+            <p className="text-muted-foreground lg:text-base text-sm tracking-tight">
               {description}
             </p>
           </CardHeader>
@@ -52,7 +63,7 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
               <form
                 id="auth-form"
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="lg:space-y-6 space-y-3"
+                className="space-y-2"
               >
                 {formField.map((item, index) => (
                   <FormField
@@ -66,13 +77,44 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                         </FormLabel>
                         <FormControl>
                           <InputGroup>
-                            <InputGroupInput
-                              type={item.type}
-                              placeholder={item.placeholder}
-                              {...field}
-                              className="lg:h-11 placeholder:text-sm"
-                            />
-                            <InputGroupAddon>{item.icon}</InputGroupAddon>
+                            {item.type === 'password' ? (
+                              <>
+                                <InputGroupInput
+                                  type={
+                                    showPassword[item.name]
+                                      ? 'text'
+                                      : 'password'
+                                  }
+                                  placeholder={item.placeholder}
+                                  {...field}
+                                  className="lg:h-11 placeholder:text-sm"
+                                />
+                                <InputGroupAddon>{item.icon}</InputGroupAddon>
+                                <Button
+                                  onClick={() => toggleShowPassword(item.name)}
+                                  type="button"
+                                  variant="ghost"
+                                >
+                                  {showPassword[item.name] ? (
+                                    <EyeIcon />
+                                  ) : (
+                                    <EyeOffIcon />
+                                  )}
+                                </Button>
+                              </>
+                            ) : (
+                              <>
+                                <>
+                                  <InputGroupInput
+                                    type={item.type}
+                                    placeholder={item.placeholder}
+                                    {...field}
+                                    className="lg:h-11 placeholder:text-sm"
+                                  />
+                                  <InputGroupAddon>{item.icon}</InputGroupAddon>
+                                </>
+                              </>
+                            )}
                           </InputGroup>
                         </FormControl>
                         <FormMessage />
@@ -88,14 +130,14 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
               <Button
                 form="auth-form"
                 type="submit"
-                className="w-full bg-foreground text-white hover:bg-foreground/90 font-semibold lg:h-12 lg:text-lg"
+                className="w-full bg-foreground text-white hover:bg-foreground/90 font-semibold lg:h-12 lg:text-base"
               >
                 {textButton}
               </Button>
               <FieldSeparator className="my-6">Or</FieldSeparator>
               <Button
                 variant="outline"
-                className="text-foreground w-full gap-3 lg:text-lg lg:h-12 bg-white hover:bg-muted-foreground/10"
+                className="text-foreground w-full gap-3 lg:text-base lg:h-12 bg-white hover:bg-muted-foreground/10"
                 onClick={Oauth.signIn.google}
               >
                 <Image
@@ -103,13 +145,13 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                   alt="Google"
                   width={480}
                   height={480}
-                  className="lg:h-6 lg:w-6 h-4 w-4"
+                  className="lg:h-5 lg:w-5 h-4 w-4"
                 />
                 Continue with Google
               </Button>
             </div>
             {page === 'login' ? (
-              <p className="text-muted-foreground tracking-tight text-sm lg:text-lg">
+              <p className="text-muted-foreground tracking-tight text-sm lg:text-base">
                 Don`t have an account?{' '}
                 <Link
                   href="/register"
@@ -119,7 +161,7 @@ const Auth = <T extends FieldValues>(props: PropTypes<T>) => {
                 </Link>
               </p>
             ) : (
-              <p className=" text-muted-foreground tracking-tight text-sm lg:text-lg">
+              <p className=" text-muted-foreground tracking-tight text-sm lg:text-base">
                 Have an account?{' '}
                 <Link
                   href="/login"

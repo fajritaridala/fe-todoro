@@ -17,22 +17,22 @@ export default function AuthLayout({
         {/* content start */}
         <div className=" grid grid-rows-5 h-full">
           <div className=" my-auto flex gap-3">
-            <div className="border bg-white h-12 w-12 rounded-lg flex items-center-safe justify-center-safe">
+            <div className="border bg-white h-8 w-8 rounded-lg flex items-center-safe justify-center-safe">
               <Image
                 src="/logo-4.png"
                 alt="todoro-logo"
                 width={480}
                 height={480}
-                className="w-10 h-10"
+                className="w-6 h-6"
               />
             </div>
-            <p className="text-white text-2xl tracking-tight font-bold my-auto">
+            <p className="text-white text-lg tracking-tight font-bold my-auto">
               Todoro.
             </p>
           </div>
 
-          <div className=" row-start-2 row-span-3  my-auto">
-            <h2 className="tracking-tight leading-24 text-white mb-4 font-extrabold w-20 text-8xl">
+          <div className=" row-start-2 row-span-3  space-y-8 my-auto">
+            <h2 className="tracking-tight leading-18  text-white  font-extrabold w-20 text-7xl ">
               {TEXT_CONTENT.map((item, index) => (
                 <SplitText
                   key={index}
