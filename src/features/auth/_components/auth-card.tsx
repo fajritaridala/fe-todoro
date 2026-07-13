@@ -1,16 +1,22 @@
-'use client'
+"use client";
 
-import AnimatedContent from '@/src/components/AnimatedContent'
-import { Button } from '@/src/components/ui/button'
+import Oauth from "@/src/lib/supabase/oauth";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { FieldValues, SubmitHandler, UseFormReturn } from "react-hook-form";
+
+import AnimatedContent from "@/src/components/AnimatedContent";
+import { Button } from "@/src/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from '@/src/components/ui/card'
-import EyeIcon from '@/src/components/ui/eye-icon'
-import EyeOffIcon from '@/src/components/ui/eye-off-icon'
-import { FieldSeparator } from '@/src/components/ui/field'
+} from "@/src/components/ui/card";
+import EyeIcon from "@/src/components/ui/eye-icon";
+import EyeOffIcon from "@/src/components/ui/eye-off-icon";
+import { FieldSeparator } from "@/src/components/ui/field";
 import {
   Form,
   FormControl,
@@ -18,39 +24,35 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/src/components/ui/form'
+} from "@/src/components/ui/form";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@/src/components/ui/input-group'
-import Oauth from '@/src/lib/supabase/oauth'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react'
-import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form'
-import { authConstants } from '../auth.constant'
+} from "@/src/components/ui/input-group";
+
+import { authConstants } from "../auth.constant";
 
 type PropTypes<T extends FieldValues> = {
-  title: string
-  description: string
-  textButton: string
-  page: string
-  form: UseFormReturn<T> // form dari react-hook-form yang dikirim oleh tiap halaman (login/register)
-  onSubmit: SubmitHandler<T>
-}
+  title: string;
+  description: string;
+  textButton: string;
+  page: string;
+  form: UseFormReturn<T>; // form dari react-hook-form yang dikirim oleh tiap halaman (login/register)
+  onSubmit: SubmitHandler<T>;
+};
 
 const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
-  const [showPassword, setShowPassword] = useState<Record<string, boolean>>({})
+  const [showPassword, setShowPassword] = useState<Record<string, boolean>>({});
   const toggleShowPassword = (itemName: string) => {
     setShowPassword((prev) => ({
       ...prev,
       [itemName]: !prev[itemName],
-    }))
-  }
+    }));
+  };
 
-  const { page, textButton, description, title, form, onSubmit } = props
-  const formField = authConstants(page)
+  const { page, textButton, description, title, form, onSubmit } = props;
+  const formField = authConstants(page);
 
   return (
     <div className="flex h-screen justify-center-safe overflow-hidden bg-white">
@@ -83,13 +85,13 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
                         </FormLabel>
                         <FormControl>
                           <InputGroup>
-                            {item.type === 'password' ? (
+                            {item.type === "password" ? (
                               <>
                                 <InputGroupInput
                                   type={
                                     showPassword[item.name]
-                                      ? 'text'
-                                      : 'password'
+                                      ? "text"
+                                      : "password"
                                   }
                                   placeholder={item.placeholder}
                                   {...field}
@@ -156,9 +158,9 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
                 Continue with Google
               </Button>
             </div>
-            {page === 'login' ? (
+            {page === "login" ? (
               <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
-                Don`t have an account?{' '}
+                Don`t have an account?{" "}
                 <Link
                   href="/register"
                   className="text-foreground font-bold hover:underline"
@@ -168,7 +170,7 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
               </p>
             ) : (
               <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
-                Have an account?{' '}
+                Have an account?{" "}
                 <Link
                   href="/login"
                   className="text-foreground font-bold hover:underline"
@@ -181,7 +183,7 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
         </Card>
       </AnimatedContent>
     </div>
-  )
-}
+  );
+};
 
-export default AuthCard
+export default AuthCard;

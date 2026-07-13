@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import AuthCard from '../_components/auth-card'
-import useLogin from './useLogin'
+import AuthCard from "../_components/auth-card";
+import useLogin from "./useLogin";
 
 export default function LoginContainer() {
-  const { onLoginSubmit, form } = useLogin()
+  const { onLoginSubmit, form } = useLogin();
   return (
     <AuthCard
       title="Welcome Back"
@@ -14,5 +14,5 @@ export default function LoginContainer() {
       onSubmit={onLoginSubmit}
       form={form}
     />
-  )
+  );
 }

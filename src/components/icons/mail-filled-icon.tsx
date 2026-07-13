@@ -1,48 +1,48 @@
-'use client'
+"use client";
 
-import { motion, useAnimate } from 'motion/react'
-import { forwardRef, useCallback, useImperativeHandle } from 'react'
-import type { AnimatedIconHandle, AnimatedIconProps } from './types'
+import { motion, useAnimate } from "motion/react";
+import { forwardRef, useCallback, useImperativeHandle } from "react";
+import type { AnimatedIconHandle, AnimatedIconProps } from "./types";
 
 const MailFilledIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
   (
-    { size = 24, color = 'currentColor', strokeWidth = 2, className = '' },
+    { size = 24, color = "currentColor", strokeWidth = 2, className = "" },
     ref
   ) => {
-    const [scope, animate] = useAnimate()
+    const [scope, animate] = useAnimate();
 
     const start = useCallback(async () => {
       await animate(
-        '.mail-open',
+        ".mail-open",
         {
           rotateX: -60,
-          transformOrigin: '50% 0%',
+          transformOrigin: "50% 0%",
         },
         {
           duration: 0.5,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }
-      )
-    }, [animate])
+      );
+    }, [animate]);
 
     const stop = useCallback(() => {
       animate(
-        '.mail-open',
+        ".mail-open",
         {
           rotateX: 0,
-          transformOrigin: '50% 0%',
+          transformOrigin: "50% 0%",
         },
         {
           duration: 0.5,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }
-      )
-    }, [animate])
+      );
+    }, [animate]);
 
     useImperativeHandle(ref, () => ({
       startAnimation: start,
       stopAnimation: stop,
-    }))
+    }));
 
     return (
       <motion.svg
@@ -64,9 +64,9 @@ const MailFilledIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
         <motion.path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
         <motion.path d="M3 7l9 6l9 -6" className="mail-open" />
       </motion.svg>
-    )
+    );
   }
-)
+);
 
-MailFilledIcon.displayName = 'MailFilledIcon'
-export default MailFilledIcon
+MailFilledIcon.displayName = "MailFilledIcon";
+export default MailFilledIcon;

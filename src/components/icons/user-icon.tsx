@@ -1,48 +1,48 @@
-'use client'
+"use client";
 
-import { motion, useAnimate } from 'motion/react'
-import { forwardRef, useCallback, useImperativeHandle } from 'react'
-import type { AnimatedIconHandle, AnimatedIconProps } from './types'
+import { motion, useAnimate } from "motion/react";
+import { forwardRef, useCallback, useImperativeHandle } from "react";
+import type { AnimatedIconHandle, AnimatedIconProps } from "./types";
 
 const UserIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
   (
-    { size = 24, color = 'currentColor', strokeWidth = 2, className = '' },
+    { size = 24, color = "currentColor", strokeWidth = 2, className = "" },
     ref
   ) => {
-    const [scope, animate] = useAnimate()
+    const [scope, animate] = useAnimate();
 
     const start = useCallback(async () => {
       animate(
-        '.user-avatar',
+        ".user-avatar",
         {
           scale: 1.05,
           y: -1,
         },
         {
           duration: 0.25,
-          ease: 'easeOut',
+          ease: "easeOut",
         }
-      )
-    }, [animate])
+      );
+    }, [animate]);
 
     const stop = useCallback(async () => {
       animate(
-        '.user-avatar',
+        ".user-avatar",
         {
           scale: 1,
           y: 0,
         },
         {
           duration: 0.2,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }
-      )
-    }, [animate])
+      );
+    }, [animate]);
 
     useImperativeHandle(ref, () => ({
       startAnimation: start,
       stopAnimation: stop,
-    }))
+    }));
 
     return (
       <motion.svg
@@ -63,15 +63,15 @@ const UserIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <motion.g
           className="user-avatar"
-          style={{ transformOrigin: '50% 50%' }}
+          style={{ transformOrigin: "50% 50%" }}
         >
           <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
           <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
         </motion.g>
       </motion.svg>
-    )
+    );
   }
-)
+);
 
-UserIcon.displayName = 'UserIcon'
-export default UserIcon
+UserIcon.displayName = "UserIcon";
+export default UserIcon;

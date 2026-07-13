@@ -1,13 +1,13 @@
-import { Metadata } from 'next'
-import RegisterContainer from '@/src/features/auth/register'
+import { Metadata } from "next";
+import RegisterContainer from "@/src/features/auth/register";
 
 export const metadata: Metadata = {
-  title: 'Sign Up',
-  description: 'Register page',
-}
+  title: "Sign Up",
+  description: "Register page",
+};
 
 const RegisterPage = () => {
-  return <RegisterContainer />
-}
+  return <RegisterContainer />;
+};
 
-export default RegisterPage
+export default RegisterPage;

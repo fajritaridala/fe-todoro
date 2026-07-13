@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import AuthCard from '../_components/auth-card'
-import useRegister from './useRegister'
+import AuthCard from "../_components/auth-card";
+import useRegister from "./useRegister";
 
 export default function RegisterContainer() {
-  const { form, onRegisterSubmit } = useRegister()
+  const { form, onRegisterSubmit } = useRegister();
 
   return (
     <AuthCard
@@ -15,5 +15,5 @@ export default function RegisterContainer() {
       form={form}
       onSubmit={onRegisterSubmit}
     />
-  )
+  );
 }

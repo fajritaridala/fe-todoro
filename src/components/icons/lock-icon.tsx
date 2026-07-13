@@ -1,44 +1,44 @@
-'use client'
+"use client";
 
-import { motion, useAnimate } from 'motion/react'
-import { forwardRef, useImperativeHandle } from 'react'
-import type { AnimatedIconHandle, AnimatedIconProps } from './types'
+import { motion, useAnimate } from "motion/react";
+import { forwardRef, useImperativeHandle } from "react";
+import type { AnimatedIconHandle, AnimatedIconProps } from "./types";
 
 const LockIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
   (
-    { size = 48, color = 'currentColor', strokeWidth = 2, className = '' },
+    { size = 48, color = "currentColor", strokeWidth = 2, className = "" },
     ref
   ) => {
-    const [scope, animate] = useAnimate()
+    const [scope, animate] = useAnimate();
 
     const start = async () => {
       await animate(
-        '.lock-upper-body',
+        ".lock-upper-body",
         { rotate: 40, y: -1.7, x: 3 },
-        { duration: 0.28, ease: 'easeOut' }
-      )
-    }
+        { duration: 0.28, ease: "easeOut" }
+      );
+    };
 
     const stop = async () => {
       await animate(
-        '.lock-upper-body',
+        ".lock-upper-body",
         { rotate: 0, x: 0, y: 0 },
-        { duration: 0.22, ease: 'easeInOut' }
-      )
-    }
+        { duration: 0.22, ease: "easeInOut" }
+      );
+    };
 
     useImperativeHandle(ref, () => ({
       startAnimation: start,
       stopAnimation: stop,
-    }))
+    }));
 
     const handleHoverStart = () => {
-      start()
-    }
+      start();
+    };
 
     const handleHoverEnd = () => {
-      stop()
-    }
+      stop();
+    };
 
     return (
       <motion.svg
@@ -55,7 +55,7 @@ const LockIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
         strokeLinecap="round"
         strokeLinejoin="round"
         className={`cursor-pointer ${className}`}
-        style={{ overflow: 'visible' }}
+        style={{ overflow: "visible" }}
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
 
@@ -69,13 +69,13 @@ const LockIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
         <motion.path
           className="lock-upper-body"
           d="M8 11v-4a4 4 0 1 1 8 0v4"
-          style={{ transformOrigin: '50% 100%' }}
+          style={{ transformOrigin: "50% 100%" }}
         />
       </motion.svg>
-    )
+    );
   }
-)
+);
 
-LockIcon.displayName = 'LockIcon'
+LockIcon.displayName = "LockIcon";
 
-export default LockIcon
+export default LockIcon;

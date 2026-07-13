@@ -1,6 +1,8 @@
-import SplitText from '@/src/components/SplitText'
-import Image from 'next/image'
-import { TEXT_CONTENT } from '../auth.constant'
+import Image from "next/image";
+
+import SplitText from "@/src/components/SplitText";
+
+import { TEXT_CONTENT } from "../auth.constant";
 
 export default function AuthSide() {
   return (
@@ -58,5 +60,5 @@ export default function AuthSide() {
       </div>
       {/* content end */}
     </div>
-  )
+  );
 }

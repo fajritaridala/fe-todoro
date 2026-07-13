@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { Button } from '@/src/components/ui/button'
-import Oauth from '@/src/lib/supabase/oauth'
-import Link from 'next/link'
+import Link from "next/link";
+import { Button } from "@/src/components/ui/button";
+import Oauth from "@/src/lib/supabase/oauth";
 
 export default function Home() {
   return (
@@ -10,5 +10,5 @@ export default function Home() {
       <Link href="/login">Login</Link>
       <Button onClick={Oauth.signOut}>logout</Button>
     </>
-  )
+  );
 }

@@ -3,11 +3,12 @@
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
-  "importOrder": ["^components/(.*)$", "^[./]"],
-  "importOrderSeparation": false,
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@/src/components/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
+  "importOrderCaseInsensitive": true,
   "trailingComma": "es5",
   "tabWidth": 2,
-  "semi": false,
-  "singleQuote": true
+  "semi": true,
+  "singleQuote": false
 }

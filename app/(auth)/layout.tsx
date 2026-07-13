@@ -1,5 +1,5 @@
-import AuthSide from '@/src/features/auth/_components/auth-side'
-import { SharedLayout } from '../layout'
+import AuthSide from "@/src/features/auth/_components/auth-side";
+import { SharedLayout } from "../layout";
 
 export default function AuthLayout({ children }: SharedLayout) {
   return (
@@ -7,5 +7,5 @@ export default function AuthLayout({ children }: SharedLayout) {
       <AuthSide />
       {children}
     </div>
-  )
+  );
 }
