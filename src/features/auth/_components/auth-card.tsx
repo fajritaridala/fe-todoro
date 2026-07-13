@@ -4,9 +4,15 @@ import Oauth from "@/src/lib/supabase/oauth";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { FieldValues, SubmitHandler, UseFormReturn } from "react-hook-form";
+import {
+  FieldPath,
+  FieldValues,
+  SubmitHandler,
+  UseFormReturn,
+} from "react-hook-form";
 
 import AnimatedContent from "@/src/components/AnimatedContent";
+import AnimatedIcon from "@/src/components/icons/animated-icon";
 import { Button } from "@/src/components/ui/button";
 import {
   Card,
@@ -31,13 +37,12 @@ import {
   InputGroupInput,
 } from "@/src/components/ui/input-group";
 
-import { authConstants } from "../auth.constant";
-
 type PropTypes<T extends FieldValues> = {
   title: string;
   description: string;
   textButton: string;
   page: string;
+  formField: Array<Record<string, string>>;
   form: UseFormReturn<T>; // form dari react-hook-form yang dikirim oleh tiap halaman (login/register)
   onSubmit: SubmitHandler<T>;
 };
@@ -51,8 +56,8 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
     }));
   };
 
-  const { page, textButton, description, title, form, onSubmit } = props;
-  const formField = authConstants(page);
+  const { page, textButton, description, title, form, onSubmit, formField } =
+    props;
 
   return (
     <div className="flex h-screen justify-center-safe overflow-hidden bg-white">
@@ -75,9 +80,9 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
               >
                 {formField.map((item, index) => (
                   <FormField
-                    control={form.control}
                     key={index}
-                    name={item.name as any}
+                    control={form.control}
+                    name={item.name as FieldPath<T>}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-muted text-sm">
@@ -97,7 +102,9 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
                                   {...field}
                                   className="placeholder:text-sm lg:h-11"
                                 />
-                                <InputGroupAddon>{item.icon}</InputGroupAddon>
+                                <InputGroupAddon>
+                                  <AnimatedIcon icon={item.icon} />
+                                </InputGroupAddon>
                                 <Button
                                   onClick={() => toggleShowPassword(item.name)}
                                   type="button"
@@ -119,7 +126,9 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
                                     {...field}
                                     className="placeholder:text-sm lg:h-11"
                                   />
-                                  <InputGroupAddon>{item.icon}</InputGroupAddon>
+                                  <InputGroupAddon>
+                                    <AnimatedIcon icon={item.icon} />
+                                  </InputGroupAddon>
                                 </>
                               </>
                             )}

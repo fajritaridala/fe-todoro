@@ -1,6 +1,7 @@
 "use client";
 
 import AuthCard from "../_components/auth-card";
+import AUTH_CONSTANT from "../auth.constant";
 import useRegister from "./useRegister";
 
 export default function RegisterContainer() {
@@ -14,6 +15,7 @@ export default function RegisterContainer() {
       textButton="Create account"
       form={form}
       onSubmit={onRegisterSubmit}
+      formField={AUTH_CONSTANT.register}
     />
   );
 }

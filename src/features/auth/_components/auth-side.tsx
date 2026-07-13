@@ -2,9 +2,10 @@ import Image from "next/image";
 
 import SplitText from "@/src/components/SplitText";
 
-import { TEXT_CONTENT } from "../auth.constant";
+import AUTH_CONSTANT from "../auth.constant";
 
 export default function AuthSide() {
+  const { image, brand, splitText, description } = AUTH_CONSTANT;
   return (
     <div className="relative hidden items-center-safe overflow-hidden bg-black px-12 lg:block">
       {/* blob start */}
@@ -17,21 +18,21 @@ export default function AuthSide() {
         <div className="my-auto flex gap-3">
           <div className="flex h-8 w-8 items-center-safe justify-center-safe rounded-lg border bg-white">
             <Image
-              src="/logo-4.png"
-              alt="todoro-logo"
+              src={image.src}
+              alt={image.alt}
               width={480}
               height={480}
               className="h-6 w-6"
             />
           </div>
           <p className="my-auto text-lg font-bold tracking-tight text-white">
-            Todoro.
+            {brand}
           </p>
         </div>
 
         <div className="row-span-3 row-start-2 my-auto space-y-8">
           <h2 className="w-20 text-7xl leading-18 font-extrabold tracking-tight text-white">
-            {TEXT_CONTENT.map((item, index) => (
+            {splitText.map((item, index) => (
               <SplitText
                 key={index}
                 text={item.text}
@@ -42,8 +43,7 @@ export default function AuthSide() {
             ))}
           </h2>
           <p className="text-muted-foreground w-sm text-lg leading-relaxed font-medium">
-            Your simple companion for daily productivity. Organize tasks and
-            stay in the zone.
+            {description}
           </p>
         </div>
 
