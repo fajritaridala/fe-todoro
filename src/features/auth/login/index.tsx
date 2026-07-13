@@ -1,6 +1,7 @@
 "use client";
 
 import AuthCard from "../_components/auth-card";
+import AuthForm from "../_components/auth-form";
 import AUTH_CONSTANT from "../auth.constant";
 import useLogin from "./useLogin";
 
@@ -10,11 +11,14 @@ export default function LoginContainer() {
     <AuthCard
       title="Welcome Back"
       description="Please enter your details to sign in"
-      page="login"
+      footer={AUTH_CONSTANT.login.footer}
       textButton="Get Started"
-      onSubmit={onLoginSubmit}
-      form={form}
-      formField={AUTH_CONSTANT.login}
-    />
+    >
+      <AuthForm
+        form={form}
+        onSubmit={onLoginSubmit}
+        field={AUTH_CONSTANT.login.form}
+      />
+    </AuthCard>
   );
 }

@@ -3,16 +3,9 @@
 import Oauth from "@/src/lib/supabase/oauth";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import {
-  FieldPath,
-  FieldValues,
-  SubmitHandler,
-  UseFormReturn,
-} from "react-hook-form";
+import { ReactNode } from "react";
 
 import AnimatedContent from "@/src/components/AnimatedContent";
-import AnimatedIcon from "@/src/components/icons/animated-icon";
 import { Button } from "@/src/components/ui/button";
 import {
   Card,
@@ -20,44 +13,20 @@ import {
   CardFooter,
   CardHeader,
 } from "@/src/components/ui/card";
-import EyeIcon from "@/src/components/ui/eye-icon";
-import EyeOffIcon from "@/src/components/ui/eye-off-icon";
 import { FieldSeparator } from "@/src/components/ui/field";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/src/components/ui/form";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/src/components/ui/input-group";
 
-type PropTypes<T extends FieldValues> = {
+import AUTH_CONSTANT from "../auth.constant";
+
+type PropTypes = {
   title: string;
   description: string;
   textButton: string;
-  page: string;
-  formField: Array<Record<string, string>>;
-  form: UseFormReturn<T>; // form dari react-hook-form yang dikirim oleh tiap halaman (login/register)
-  onSubmit: SubmitHandler<T>;
+  footer: typeof AUTH_CONSTANT.register.footer;
+  children: ReactNode;
 };
 
-const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
-  const [showPassword, setShowPassword] = useState<Record<string, boolean>>({});
-  const toggleShowPassword = (itemName: string) => {
-    setShowPassword((prev) => ({
-      ...prev,
-      [itemName]: !prev[itemName],
-    }));
-  };
-
-  const { page, textButton, description, title, form, onSubmit, formField } =
-    props;
+const AuthCard = (props: PropTypes) => {
+  const { footer, textButton, description, title, children } = props;
 
   return (
     <div className="flex h-screen justify-center-safe overflow-hidden bg-white">
@@ -71,77 +40,7 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
               {description}
             </p>
           </CardHeader>
-          <CardContent className="mb-4 lg:w-full">
-            <Form {...form}>
-              <form
-                id="auth-form"
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-2"
-              >
-                {formField.map((item, index) => (
-                  <FormField
-                    key={index}
-                    control={form.control}
-                    name={item.name as FieldPath<T>}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-muted text-sm">
-                          {item.label}
-                        </FormLabel>
-                        <FormControl>
-                          <InputGroup>
-                            {item.type === "password" ? (
-                              <>
-                                <InputGroupInput
-                                  type={
-                                    showPassword[item.name]
-                                      ? "text"
-                                      : "password"
-                                  }
-                                  placeholder={item.placeholder}
-                                  {...field}
-                                  className="placeholder:text-sm lg:h-11"
-                                />
-                                <InputGroupAddon>
-                                  <AnimatedIcon icon={item.icon} />
-                                </InputGroupAddon>
-                                <Button
-                                  onClick={() => toggleShowPassword(item.name)}
-                                  type="button"
-                                  variant="ghost"
-                                >
-                                  {showPassword[item.name] ? (
-                                    <EyeIcon />
-                                  ) : (
-                                    <EyeOffIcon />
-                                  )}
-                                </Button>
-                              </>
-                            ) : (
-                              <>
-                                <>
-                                  <InputGroupInput
-                                    type={item.type}
-                                    placeholder={item.placeholder}
-                                    {...field}
-                                    className="placeholder:text-sm lg:h-11"
-                                  />
-                                  <InputGroupAddon>
-                                    <AnimatedIcon icon={item.icon} />
-                                  </InputGroupAddon>
-                                </>
-                              </>
-                            )}
-                          </InputGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  ></FormField>
-                ))}
-              </form>
-            </Form>
-          </CardContent>
+          <CardContent className="mb-4 lg:w-full">{children}</CardContent>
           <CardFooter className="flex w-full flex-col space-y-4">
             <div className="w-full">
               <Button
@@ -167,27 +66,15 @@ const AuthCard = <T extends FieldValues>(props: PropTypes<T>) => {
                 Continue with Google
               </Button>
             </div>
-            {page === "login" ? (
-              <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
-                Don`t have an account?{" "}
-                <Link
-                  href="/register"
-                  className="text-foreground font-bold hover:underline"
-                >
-                  Create account
-                </Link>
-              </p>
-            ) : (
-              <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
-                Have an account?{" "}
-                <Link
-                  href="/login"
-                  className="text-foreground font-bold hover:underline"
-                >
-                  Log in here
-                </Link>
-              </p>
-            )}
+            <p className="text-muted-foreground text-sm tracking-tight lg:text-base">
+              {footer.label}{" "}
+              <Link
+                href={footer.link.href}
+                className="text-foreground font-bold hover:underline"
+              >
+                {footer.link.label}
+              </Link>
+            </p>
           </CardFooter>
         </Card>
       </AnimatedContent>

@@ -23,52 +23,70 @@ const AUTH_CONSTANT = {
       color: "text-danger",
     },
   ],
-  login: [
-    {
-      type: "text",
-      name: "email",
-      label: "Email",
-      placeholder: "name@example.com",
-      icon: "MailFilledIcon",
+  login: {
+    footer: {
+      label: "Don`t have an account?",
+      link: {
+        label: "Create account",
+        href: "/register",
+      },
     },
-    {
-      type: "password",
-      name: "password",
-      label: "Password",
-      placeholder: "enter your password",
-      icon: "LockIcon",
+    form: [
+      {
+        type: "text",
+        name: "email",
+        label: "Email",
+        placeholder: "name@example.com",
+        icon: "MailFilledIcon",
+      },
+      {
+        type: "password",
+        name: "password",
+        label: "Password",
+        placeholder: "enter your password",
+        icon: "LockIcon",
+      },
+    ],
+  },
+  register: {
+    footer: {
+      label: "Have an account?",
+      link: {
+        label: "Log in here",
+        href: "/login",
+      },
     },
-  ],
-  register: [
-    {
-      type: "text",
-      name: "username",
-      label: "Fullname",
-      placeholder: "e.g. John Doe",
-      icon: "UserIcon",
-    },
-    {
-      type: "email",
-      name: "email",
-      label: "Email",
-      placeholder: "name@example.com",
-      icon: "MailFilledIcon",
-    },
-    {
-      type: "password",
-      name: "password",
-      label: "Password",
-      placeholder: "create a password",
-      icon: "LockIcon",
-    },
-    {
-      type: "password",
-      name: "confirmPassword",
-      label: "Confirm Password",
-      placeholder: "confirm your password",
-      icon: "LockIcon",
-    },
-  ],
+    form: [
+      {
+        type: "text",
+        name: "username",
+        label: "Fullname",
+        placeholder: "e.g. John Doe",
+        icon: "UserIcon",
+      },
+      {
+        type: "email",
+        name: "email",
+        label: "Email",
+        placeholder: "name@example.com",
+        icon: "MailFilledIcon",
+      },
+      {
+        type: "password",
+        name: "password",
+        label: "Password",
+        placeholder: "create a password",
+        icon: "LockIcon",
+      },
+      {
+        type: "password",
+        name: "confirmPassword",
+        label: "Confirm Password",
+        placeholder: "confirm your password",
+        icon: "LockIcon",
+      },
+    ],
+  },
 };
 
 export default AUTH_CONSTANT;
